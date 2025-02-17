@@ -137,7 +137,7 @@ services:
     restart: always
 
   user-service:
-    image: social-network-cust
+    image: social-network-inst
     hostname: user-service
     #    ports:
     #      - 10005:9090
@@ -147,9 +147,10 @@ services:
         condition: service_started
       user-mongodb:
         condition: service_started
-    entrypoint: UserService
+    entrypoint: /social-network-microservices/out/run.sh
     volumes:
       - ./config:/social-network-microservices/config
+      - ./out:/social-network-microservices/out
 
   user-memcached:
     image: memcached
